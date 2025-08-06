@@ -6,9 +6,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 find_package(fmt CONFIG REQUIRED)
+find_package(SDL2 CONFIG REQUIRED)
 
 add_executable(${PROJECT_NAME} src/main.cpp src/utils.cpp)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE fmt::fmt)
+target_link_libraries(${PROJECT_NAME} PRIVATE 
+    SDL2::SDL2  
+    SDL2::SDL2main
+    fmt::fmt
+)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/include)
