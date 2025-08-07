@@ -8,7 +8,13 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 find_package(fmt CONFIG REQUIRED)
 find_package(SDL2 CONFIG REQUIRED)
 
-add_executable(${PROJECT_NAME} src/main.cpp src/utils.cpp)
+add_executable(${PROJECT_NAME} 
+src/main.cpp 
+src/utils.cpp 
+src/init/WindowDisplay.cpp
+src/init/MainLoop.cpp
+src/system/InputSystem.cpp
+)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE 
     SDL2::SDL2  

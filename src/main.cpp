@@ -2,12 +2,11 @@
 #include "utils.hpp"
 #include <SDL2/SDL.h>
 
-#include "WindowDisplay.hpp"
-#include "MainLoop.hpp"
+#include "./include/WindowDisplay.hpp"
+#include "./include/MainLoop.hpp"
 
 WindowDisplay windowDisplay = WindowDisplay();
 MainLoop mainLoop = MainLoop();
-
 
 int main(){
 
