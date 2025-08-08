@@ -6,9 +6,12 @@
 class WindowDisplay{
 
     private:
+        SDL_Window* window;
 
     public:
-        SDL_Window* window;
         void initWindow();
+        SDL_Window* getWindow();
 
 };
+
+extern WindowDisplay windowDisplay; 

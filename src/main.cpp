@@ -3,17 +3,16 @@
 #include <SDL2/SDL.h>
 
 #include "./include/WindowDisplay.hpp"
+#include "./include/Renderer.hpp"
 #include "./include/MainLoop.hpp"
-
-WindowDisplay windowDisplay = WindowDisplay();
-MainLoop mainLoop = MainLoop();
 
 int main(){
 
     windowDisplay.initWindow(); 
+    renderer.initRenderer();
     mainLoop.startLoop();
 
-    SDL_DestroyWindow(windowDisplay.window);
+    SDL_DestroyWindow(windowDisplay.getWindow());
     SDL_Quit();
     return 0;
 }

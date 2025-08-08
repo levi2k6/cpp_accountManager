@@ -19,6 +19,12 @@ void WindowDisplay::initWindow(){
         std::cerr << "Creating window failed:  " << SDL_GetError() << "\n";
         SDL_Quit();
     }
-
 }
+
+SDL_Window* WindowDisplay::getWindow(){
+    return window;
+}
+
+
+WindowDisplay windowDisplay = WindowDisplay(); 
 

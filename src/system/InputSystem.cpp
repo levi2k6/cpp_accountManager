@@ -3,12 +3,10 @@
 #include "../include/MainLoop.hpp"
 
 
-InputSystem::InputSystem(MainLoop* mainLoop) : mainLoop(mainLoop) {}
-
 void InputSystem::checkInput(){
     while(SDL_PollEvent(&event)){
         if(event.type == SDL_QUIT){
-            mainLoop->setIsRunning(false);
+            mainLoop.setIsRunning(false);
         } 
         if(event.type == (SDL_KEYDOWN)){
             if(event.key.keysym.sym == SDLK_f){
@@ -19,6 +17,6 @@ void InputSystem::checkInput(){
     }
 }
 
-
+InputSystem inputSystem = InputSystem();
 
 

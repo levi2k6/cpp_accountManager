@@ -13,7 +13,9 @@ src/main.cpp
 src/utils.cpp 
 src/init/WindowDisplay.cpp
 src/init/MainLoop.cpp
+src/init/Renderer.cpp
 src/system/InputSystem.cpp
+src/system/UISystem.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE 
