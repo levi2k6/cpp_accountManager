@@ -1,17 +1,19 @@
 #include <iostream>
 #include "../include/WindowDisplay.hpp"
+#include "../include/Types.hpp"
 
 void WindowDisplay::initWindow(){
 
     char message[] = "Hello SDL";
-    float width = 500;
-    float height = 500;
+    size.x = 800;
+    size.y = 800;
+    
     
     window = SDL_CreateWindow(
         message,
         SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-        width,
-        height,
+        size.x,
+        size.y,
         SDL_WINDOW_SHOWN
     );
 
@@ -25,6 +27,9 @@ SDL_Window* WindowDisplay::getWindow(){
     return window;
 }
 
+Vector WindowDisplay::getSize(){
+    return size;
+}
 
 WindowDisplay windowDisplay = WindowDisplay(); 
 

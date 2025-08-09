@@ -1,7 +1,10 @@
 #pragma once
 #include <SDL2/SDL.h>
 
+
+class Color;
 class WindowDisplay;
+
 
 class Renderer{
     private:
@@ -11,6 +14,8 @@ class Renderer{
 
         void initRenderer();
         SDL_Renderer* getSdlRenderer();
+        void changeColor(const Color &color);
+
 };
 
 extern Renderer renderer;  

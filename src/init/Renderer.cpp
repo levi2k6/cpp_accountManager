@@ -16,4 +16,8 @@ SDL_Renderer* Renderer::getSdlRenderer(){
 
 }
 
+void Renderer::changeColor(const Color &color){
+    SDL_SetRenderDrawColor(renderer.getSdlRenderer(), color.r, color.g, color.b, color.alpha);
+}
+
 Renderer renderer = Renderer();
