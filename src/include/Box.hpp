@@ -1,6 +1,5 @@
 #pragma once
 #include "Types.hpp" 
-#include "UISystem.hpp"
 #include "Renderer.hpp"
 
 
@@ -38,11 +37,11 @@ class Box{
             upRightPosition.x = position.x + size.x;
             upRightPosition.y = position.y - size.y; 
 
-            uiSystem.drawPoint(position);
-            uiSystem.drawLine(heightPosition, downLeftPosition);
-            uiSystem.drawLine(downLeftPosition, widthPosition);
-            uiSystem.drawLine(widthPosition, upRightPosition);
-            uiSystem.drawLine(upRightPosition, heightPosition);
+            renderer.drawPoint(position);
+            renderer.drawLine(heightPosition, downLeftPosition);
+            renderer.drawLine(downLeftPosition, widthPosition);
+            renderer.drawLine(widthPosition, upRightPosition);
+            renderer.drawLine(upRightPosition, heightPosition);
             // drawLine(color, )
             // drawLine(color, widthPosition, upRightPosition);
         } 

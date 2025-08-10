@@ -15,8 +15,9 @@ src/init/WindowDisplay.cpp
 src/init/MainLoop.cpp
 src/init/Renderer.cpp
 src/system/InputSystem.cpp
-src/system/UI/UISystem.cpp
-src/system/UI/components/Box.cpp
+src/system/SceneSystem.cpp
+src/system/UISystem.cpp
+src/UI/components/Box.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE 

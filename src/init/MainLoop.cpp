@@ -28,8 +28,6 @@ void MainLoop::startLoop(){
         size.x = 20;
         size.y = 100;
 
-        
-
         Box box1(position, size, color); 
 
         Color color1; 
