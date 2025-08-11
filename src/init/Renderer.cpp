@@ -84,5 +84,4 @@ void Renderer::createBox(const Vector& position , const Vector& size){
     // drawLine(color, widthPosition, upRightPosition);
 } 
 
-
 Renderer renderer = Renderer();

@@ -1,48 +1,20 @@
 #pragma once
+#include <iostream>
+#include "vector"
 #include "Types.hpp" 
 #include "Renderer.hpp"
+#include "UI.hpp"
 
 
-class Box{
-
+class Box : public UI{
     private:
-        Vector position; 
-        Vector size;
-        Color color;
-
+        Vector position = Vector(0, 0);//x, y
+        Vector size = Vector(10, 10); //x, y
+        Color color = Color(255, 255, 255, 0);//r, g, b, alpha 
+        std::vector<UI> children;
 
     public:
-        Box(Vector position, Vector size, Color color) : position(position), size(size), color(color){
-
-            renderer.changeColor(color);
-            createBox(position, size);
-            
-        }
-
-        void createBox(const Vector& position , const Vector& size){
-
-            Vector heightPosition; 
-            heightPosition.x = position.x - size.x;
-            heightPosition.y = position.y - size.y;
-
-            Vector downLeftPosition; 
-            downLeftPosition.x = position.x - size.x;
-            downLeftPosition.y = position.y + size.y;
-
-            Vector widthPosition;
-            widthPosition.x = position.x + size.x;
-            widthPosition.y = position.y + size.y;
-
-            Vector upRightPosition;
-            upRightPosition.x = position.x + size.x;
-            upRightPosition.y = position.y - size.y; 
-
-            renderer.drawPoint(position);
-            renderer.drawLine(heightPosition, downLeftPosition);
-            renderer.drawLine(downLeftPosition, widthPosition);
-            renderer.drawLine(widthPosition, upRightPosition);
-            renderer.drawLine(upRightPosition, heightPosition);
-            // drawLine(color, )
-            // drawLine(color, widthPosition, upRightPosition);
-        } 
+        Box();
+        Box(Vector position, Vector size, Color color);
+        void createBox(const Vector& position , const Vector& size);
 };
