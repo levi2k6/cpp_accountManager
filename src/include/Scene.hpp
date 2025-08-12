@@ -1,13 +1,11 @@
 #include <iostream>
-#include "vector" 
+#include <vector> 
 #include "UI.hpp"
 
 class Scene{
 
-    private:
-        std::vector<UI> sceneUis;
-
     public:
-
+        virtual ~Scene(){}
+        virtual void drawScene();
 
 };

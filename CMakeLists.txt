@@ -17,6 +17,7 @@ src/init/Renderer.cpp
 src/system/InputSystem.cpp
 src/system/SceneSystem.cpp
 src/system/UISystem.cpp
+src/scenes/Auth.cpp
 src/UI/components/Box.cpp
 )
 

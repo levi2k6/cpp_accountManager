@@ -7,7 +7,6 @@
 void Renderer::initRenderer(){
 
     sdlRenderer = SDL_CreateRenderer(windowDisplay.getWindow(), -1 ,SDL_RENDERER_ACCELERATED);
-
 }
 
 SDL_Renderer* Renderer::getSdlRenderer(){
@@ -58,21 +57,13 @@ void Renderer::drawCircle(int centerX, int centerY, int radius) {
 
 void Renderer::createBox(const Vector& position , const Vector& size){
 
-    Vector heightPosition; 
-    heightPosition.x = position.x - size.x;
-    heightPosition.y = position.y - size.y;
+    Vector heightPosition(position.x - size.x, position.y - size.y); 
 
-    Vector downLeftPosition; 
-    downLeftPosition.x = position.x - size.x;
-    downLeftPosition.y = position.y + size.y;
+    Vector downLeftPosition(position.x - size.x, position.y + size.y); 
 
-    Vector widthPosition;
-    widthPosition.x = position.x + size.x;
-    widthPosition.y = position.y + size.y;
+    Vector widthPosition(position.x + size.x, position.y + size.y);
 
-    Vector upRightPosition;
-    upRightPosition.x = position.x + size.x;
-    upRightPosition.y = position.y - size.y; 
+    Vector upRightPosition(position.x + size.x, position.y - size.y);
 
     // drawPoint(heightPosition1);
     // drawPoint(widthPosition1);

@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include "vector"
+#include <vector>
 #include "Types.hpp" 
 #include "Renderer.hpp"
 #include "UI.hpp"
@@ -16,5 +16,13 @@ class Box : public UI{
     public:
         Box();
         Box(Vector position, Vector size, Color color);
+        void drawUi() override;
         void createBox(const Vector& position , const Vector& size);
+        Vector &getPosition();
+        void setPosition(const int &x, const int &y);
+        Vector &getSize();
+        void setSize(const int &x, const int &y);
+        Color &getColor();
+        void setColor(const uint8_t &r, const uint8_t &b, const uint8_t &g, const uint8_t &alpha);
+
 };

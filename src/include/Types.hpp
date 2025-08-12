@@ -2,6 +2,7 @@
 #include <cstdint>
 
 class Color{
+
     public: 
         uint8_t r = 255;
         uint8_t g = 255;

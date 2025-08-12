@@ -9,7 +9,7 @@ class WindowDisplay{
 
     private:
         SDL_Window *window;
-        Vector size = Vector(); 
+        Vector size = Vector(800, 800); 
 
     public:
         void initWindow();
