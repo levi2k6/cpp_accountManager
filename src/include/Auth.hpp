@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <array>
 #include <memory>
@@ -7,7 +8,7 @@
 class Auth : public Scene{
 
     private:
-        std::array<Box, 100> uis;
+        std::array<std::unique_ptr<UI>, 100> uis;
 
     public:
         void drawScene() override;

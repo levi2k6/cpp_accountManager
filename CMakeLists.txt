@@ -14,11 +14,14 @@ src/utils.cpp
 src/init/WindowDisplay.cpp
 src/init/MainLoop.cpp
 src/init/Renderer.cpp
+src/init/SceneInit.cpp
 src/system/InputSystem.cpp
 src/system/SceneSystem.cpp
 src/system/UISystem.cpp
 src/scenes/Auth.cpp
+src/UI/UI.cpp
 src/UI/components/Box.cpp
+src/UI/components/Button.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE 

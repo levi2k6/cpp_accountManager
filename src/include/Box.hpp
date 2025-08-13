@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <memory>
 #include <vector>
 #include "Types.hpp" 
 #include "Renderer.hpp"
@@ -8,21 +9,12 @@
 
 class Box : public UI{
     private:
-        Vector position = Vector(0, 0);//x, y
-        Vector size = Vector(10, 10); //x, y
-        Color color = Color(255, 255, 255, 0);//r, g, b, alpha 
-        std::vector<UI> children;
+
+        std::vector<std::unique_ptr<UI>> children;
 
     public:
-        Box();
-        Box(Vector position, Vector size, Color color);
+        Box(std::string name);
+        Box(std::string name, Vector position, Vector size, Color color);
+        void onStart() override;
         void drawUi() override;
-        void createBox(const Vector& position , const Vector& size);
-        Vector &getPosition();
-        void setPosition(const int &x, const int &y);
-        Vector &getSize();
-        void setSize(const int &x, const int &y);
-        Color &getColor();
-        void setColor(const uint8_t &r, const uint8_t &b, const uint8_t &g, const uint8_t &alpha);
-
 };

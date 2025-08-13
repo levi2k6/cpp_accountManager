@@ -18,6 +18,7 @@ void MainLoop::startLoop(){
 
         sceneSystem.sceneChanger();
 
+
         SDL_RenderPresent(renderer.getSdlRenderer());
         SDL_Delay(10);
     }
