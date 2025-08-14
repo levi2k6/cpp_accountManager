@@ -14,7 +14,7 @@ class WindowDisplay{
     public:
         void initWindow();
         SDL_Window* getWindow();
-        Vector getSize();
+        const Vector& getSize() const;
 };
 
 extern WindowDisplay windowDisplay; 

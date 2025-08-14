@@ -18,8 +18,6 @@ void SceneSystem::sceneChanger(){
     if(currentScene == "main"){
         // std::cout << "you are main" << "\n";
 
-        boxMain.drawUi();
-
         auth.drawScene();
 
     }else if(currentScene == "island"){

@@ -27,7 +27,7 @@ SDL_Window* WindowDisplay::getWindow(){
     return window;
 }
 
-Vector WindowDisplay::getSize(){
+const Vector& WindowDisplay::getSize() const {
     return size;
 }
 

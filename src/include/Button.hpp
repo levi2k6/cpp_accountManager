@@ -10,6 +10,6 @@ class Button : UI{
         Button(std::string name);
         Button(std::string name, Vector position, Vector size, Color color);
         void onStart() override;
-        void drawUi() override;
+        void drawUi(Vector position) override;
         
 };

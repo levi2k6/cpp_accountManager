@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 #include "../include/UI.hpp"
 #include "../include/Renderer.hpp"
 #include "../include/Types.hpp"
@@ -22,6 +23,11 @@ void UI::setName(std::string name){
     this->name = name; 
 }
 
+
+UI* UI::getParent(){
+    return parent.get();
+};
+
 Vector& UI::getPosition(){
     return position;
 }
@@ -29,6 +35,15 @@ Vector& UI::getPosition(){
 void UI::setPosition(const int &x, const int &y){
     position.x = x;
     position.y = y;
+}
+
+Vector& UI::getInnerPosition(){
+    return innerPosition;
+}
+
+void UI::setInnerPosition(const int &x, const int &y){
+    innerPosition.x = x;
+    innerPosition.y = y;
 }
 
 Vector& UI::getSize(){
