@@ -48,7 +48,7 @@ void Box::drawUi(){
 }
 
 void Box::addChild(std::unique_ptr<UI> child){
-
+    child->setParent(this);
     Vector newPosition = Vector( boxOrigin.x + child->getPosition().x, boxOrigin.y + child->getPosition().y );
     child->setInnerPosition(newPosition.x, newPosition.y);
     children.push_back(std::move(child));

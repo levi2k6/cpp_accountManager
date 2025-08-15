@@ -7,6 +7,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 find_package(fmt CONFIG REQUIRED)
 find_package(SDL2 CONFIG REQUIRED)
+find_package(yaml-cpp CONFIG REQUIRED)
 
 add_executable(${PROJECT_NAME} 
 src/main.cpp 
@@ -18,16 +19,19 @@ src/init/SceneInit.cpp
 src/system/InputSystem.cpp
 src/system/SceneSystem.cpp
 src/system/UISystem.cpp
+src/system/UILayoutSystem.cpp
 src/scenes/Auth.cpp
 src/UI/UI.cpp
 src/UI/components/Box.cpp
 src/UI/components/Button.cpp
+
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE 
     SDL2::SDL2  
     SDL2::SDL2main
     fmt::fmt
+    yaml-cpp::yaml-cpp
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/include)

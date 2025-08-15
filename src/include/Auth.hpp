@@ -8,11 +8,14 @@
 class Auth : public Scene{
 
     private:
-        std::array<std::unique_ptr<UI>, 100> uis;
+        std::vector<std::unique_ptr<UI>> uis;
 
     public:
-        void drawScene() override;
         void initAuth();
+        std::vector<std::unique_ptr<UI>>* getUis();
+        
+        void addUis(std::unique_ptr<UI> ui);
+        void drawScene() override;
 };
 
 extern Auth auth;

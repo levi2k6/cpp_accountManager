@@ -1,6 +1,7 @@
 #include <iostream> 
 #include "../include/InputSystem.hpp"
 #include "../include/MainLoop.hpp"
+#include "../include/Auth.hpp"
 
 void InputSystem::checkInput(){
     while(SDL_PollEvent(&event)){
@@ -9,10 +10,10 @@ void InputSystem::checkInput(){
         } 
         if(event.type == (SDL_KEYDOWN)){
             if(event.key.keysym.sym == SDLK_f){
+                auth.initAuth();
                 std::cout << "You are pressing F." << "\n";
             } 
         }
-
     }
 }
 

@@ -6,9 +6,9 @@
 #include "./include/Renderer.hpp"
 #include "./include/MainLoop.hpp"
 #include "./include/SceneInit.hpp"
+#include "./include/UILayoutSystem.hpp"
 
 int main(){
-
     windowDisplay.initWindow(); 
     renderer.initRenderer();
     sceneInit.initScenes();

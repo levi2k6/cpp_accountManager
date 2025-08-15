@@ -23,18 +23,12 @@ void UI::setName(std::string name){
     this->name = name; 
 }
 
-
 UI* UI::getParent(){
-    return parent.get();
+    return parent;
 };
 
-Vector& UI::getPosition(){
-    return position;
-}
-
-void UI::setPosition(const int &x, const int &y){
-    position.x = x;
-    position.y = y;
+void UI::setParent(UI *parent){
+    this->parent = parent;
 }
 
 Vector& UI::getInnerPosition(){
@@ -45,6 +39,16 @@ void UI::setInnerPosition(const int &x, const int &y){
     innerPosition.x = x;
     innerPosition.y = y;
 }
+
+Vector& UI::getPosition(){
+    return position;
+}
+
+void UI::setPosition(const int &x, const int &y){
+    position.x = x;
+    position.y = y;
+}
+
 
 Vector& UI::getSize(){
     return size; 

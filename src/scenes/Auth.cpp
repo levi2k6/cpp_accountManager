@@ -1,43 +1,36 @@
 #include <iostream>
 #include <memory>
-#include "../include/WindowDisplay.hpp"
+#include <yaml-cpp/yaml.h>
 #include "../include/Auth.hpp"
+#include "../include/WindowDisplay.hpp"
+#include "../include/UILayoutSystem.hpp"
+#include "../include/UI.hpp"
 #include "../include/Box.hpp"
 #include "../include/Types.hpp"
 
 
 void  Auth::initAuth(){
-    std::cout << "auth Initialized" << "\n";
+    if(uis.size() != 0){
+        uis.clear();
+    }
+    YAML::Node yamlData = YAML::LoadFile("../src/layouts/AuthLayout.yaml");
+    auto data = yamlData["data"];
 
-    Vector windowSize = windowDisplay.getSize();
+    uiLayoutSystem.createUiElements(data, &uis);
+}
 
-    Vector position1 = Vector(windowSize.x / 2, windowSize.y / 2);
-    Vector size1 = Vector(200, 200);
-    Color color1(255, 0, 0, 255);
-    std::unique_ptr<Box> box1 = std::make_unique<Box>(std::string("box1"), position1, size1, color1); 
+std::vector<std::unique_ptr<UI>>* Auth::getUis(){
+    return &uis; 
+}
 
-    std::unique_ptr<UI> boxChild = std::make_unique<Box>("boxChild");
-    boxChild->setPosition(50, 50);
-    boxChild->setSize(30, 30);
-    boxChild->setColor(255, 255, 255, 255);
-
-    box1->addChild(std::move(boxChild));
-
-    std::unique_ptr<Box> box2 = std::make_unique<Box>(std::string("box2"));
-    box2->setSize(50, 50);
-    box2->setColor(0, 244, 0, 255);
-
-    std::unique_ptr<Box> box3 = std::make_unique<Box>(std::string("box3"));
-    box2->getColor().r = 100;
-
-    uis[0] = std::move(box1);
-    uis[1] = std::move(box2);
-    uis[2] = std::move(box3);
+void Auth::addUis(std::unique_ptr<UI> ui){
+    uis.push_back(std::move(ui));
 }
 
 void Auth::drawScene(){
-    // std::cout << "draw scene" << "\n";
-    for(int i = 0; i < 3; i++){
+    // std::cout << uis.size() << "\n";
+
+    for(int i = 0; i < uis.size(); i++){
         uis[i]->drawUi();
         // std::cout << "name: " << uis[i]->getName() << "\n";
         // std::cout << "position: " << uis[i]->getPosition().x << " | " << uis[i]->getPosition().y << "\n";

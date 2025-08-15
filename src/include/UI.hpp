@@ -8,19 +8,20 @@ class UI{
         std::string name = "";
         Vector position = Vector(0,0);//x, y
         Vector size = Vector(0,0); //x, y
-        std::unique_ptr<UI> parent = nullptr;
+        UI *parent = nullptr;
         Vector innerPosition = Vector(0,0);
         Color color = Color(0,0,0,0);//r, g, b, alpha 
 
     public:
         UI(std::string name);
         UI(std::string name, Vector position, Vector size, Color color);
-        UI* getParent();
-        void setParent();
+        ;
         std::string getName();
         void setName(std::string name);
         Vector &getPosition();
         void setPosition(const int &x, const int &y);
+        UI* getParent();
+        void setParent(UI *parent);
         Vector &getInnerPosition();
         void setInnerPosition(const int &x, const int &y);
         Vector &getSize();
