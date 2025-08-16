@@ -2,11 +2,11 @@
 #include "../../include/Box.hpp"
 #include "../../include/Types.hpp"
 
-Box::Box(std::string name) : UI(name){
+Box::Box(std::string name) : Container(name){
     onStart();
 }
 
-Box::Box( std::string name, Vector position, Vector size, Color color) : UI(name, position, size, color){
+Box::Box( std::string name, Vector position, Vector size, Color color) : Container(name, position, size, color){
     onStart();
 }
 

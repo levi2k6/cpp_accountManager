@@ -10,7 +10,7 @@
 
 
 void  Auth::initAuth(){
-    if(uis.size() != 0){
+    if(size() != 0){
         uis.clear();
     }
     YAML::Node yamlData = YAML::LoadFile("../src/layouts/AuthLayout.yaml");

@@ -15,7 +15,6 @@ class UI{
     public:
         UI(std::string name);
         UI(std::string name, Vector position, Vector size, Color color);
-        ;
         std::string getName();
         void setName(std::string name);
         Vector &getPosition();
@@ -31,6 +30,6 @@ class UI{
 
         virtual void onStart(){};
         virtual void drawUi(){};   
-        virtual ~UI(){};
+        virtual ~UI() noexcept = default;
 };
 

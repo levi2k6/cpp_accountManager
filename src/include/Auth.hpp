@@ -8,13 +8,13 @@
 class Auth : public Scene{
 
     private:
-        std::vector<std::unique_ptr<UI>> uis;
+        std::unique_ptr<Box> rootUi;
 
     public:
         void initAuth();
-        std::vector<std::unique_ptr<UI>>* getUis();
+        Box* getUis();
         
-        void addUis(std::unique_ptr<UI> ui);
+        void setRootUi(std::unique_ptr<UI> ui);
         void drawScene() override;
 };
 

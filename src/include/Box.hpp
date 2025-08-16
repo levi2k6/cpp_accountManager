@@ -5,9 +5,10 @@
 #include "Types.hpp" 
 #include "Renderer.hpp"
 #include "UI.hpp"
+#include "Container.hpp"
 
 
-class Box : public UI{
+class Box : public Container{
     private:
 
         std::vector<std::unique_ptr<UI>> children;

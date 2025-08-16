@@ -3,6 +3,7 @@
 #include <memory>
 #include <yaml-cpp/yaml.h>
 #include "UI.hpp"
+#include "Container.hpp"
 
 class UILayoutSystem{
 
@@ -10,9 +11,11 @@ class UILayoutSystem{
 
     public:
         UILayoutSystem(){};
-        void createUiElements(YAML::Node data, std::vector<std::unique_ptr<UI>>*);
-        std::unique_ptr<UI> createBox(std::string name, Vector position, Vector size, Color color);
-        void createButton(std::string name, Vector position, Vector size, Color color);
+        void loadUiData(Container *sceneRoot, YAML::Node data);
+        void initRootChildren(UI *parent, YAML::Node children);    
+        void UILayoutSystem::createUiChildren();
+        std::unique_ptr<UI> createBox(YAML::Node uiData);
+        void initUi(Container container);
 };
 
 extern UILayoutSystem uiLayoutSystem;

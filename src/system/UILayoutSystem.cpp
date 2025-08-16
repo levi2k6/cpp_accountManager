@@ -4,37 +4,74 @@
 #include "../include/UILayoutSystem.hpp"
 #include "../include/Types.hpp"
 
-void UILayoutSystem::createUiElements(YAML::Node data, std::vector<std::unique_ptr<UI>>* sceneArrayUis){
-        int i = 0;
 
-        for(const auto& uiData: data){
-            std::cout << "number: " << i << "\n";
+void UILayoutSystem::loadUiData(Container *parent, YAML::Node children){
+    if(children.IsNull()){
+        std::cout << "UI children data is empty";
+        return;
+    }
 
-            if(uiData["type"].as<std::string>() == "Box"){
-                Vector position(uiData["position"]["x"].as<int>(), uiData["position"]["y"].as<int>());
-                Vector size(uiData["size"]["x"].as<int>(), uiData["size"]["y"].as<int>());
-                uint8_t colorR = uiData["color"]["r"].as<uint8_t>();
-                uint8_t colorG = uiData["color"]["g"].as<uint8_t>();
-                uint8_t colorB = uiData["color"]["b"].as<uint8_t>();
-                uint8_t alpha = uiData["color"]["alpha"].as<uint8_t>();
-                Color color(colorR, colorG, colorB, alpha);
+    for(const auto& child : children){
 
-                sceneArrayUis->push_back(std::move(createBox(uiData["name"].as<std::string>(), position, size, color)));
-                std::cout << (*sceneArrayUis)[i]->getName() << "\n";
-            }else if(uiData["type"].as<std::string>() == "Button"){
+        if(child["type"].as<std::string>() == "Box"){
+            std::unique_ptr<UI> newBox = createBox(child);
+            if(!child["children"].IsNull()){
+                loadUiData(static_cast<Container*>(newBox.get()), child["children"]);
             }
-            i++;
+            parent->addChild(std::move(newBox));
         }
+
+    }
+
 }
 
-std::unique_ptr<UI> UILayoutSystem::createBox(std::string name, Vector position, Vector size, Color color){
+std::unique_ptr<UI> UILayoutSystem::createBox(YAML::Node uiData){
+
+    std::string name = uiData["name"].as<std::string>("");
+    Vector position(
+        uiData["position"]["x"].as<int>(0),
+        uiData["position"]["y"].as<int>(0)
+    );
+    Vector size(
+        uiData["size"]["x"].as<int>(50),
+        uiData["size"]["y"].as<int>(50)
+    );
+    Color color(
+    uiData["color"]["r"].as<uint8_t>(255),
+    uiData["color"]["g"].as<uint8_t>(255),
+    uiData["color"]["b"].as<uint8_t>(255),
+    uiData["color"]["alpha"].as<uint8_t>(255)
+    );
+    
     std::unique_ptr<UI> box = std::make_unique<Box>(name, position, size, color);
     return std::move(box);
 }
 
-void UILayoutSystem::createButton(std::string name, Vector position, Vector size, Color color){
-    std::cout << "button created" << "\n";
+void UILayoutSystem::initUi(Container container){
+    // if(uiData["children"].IsNull()){
+    //     for(const auto& child : uiData["children"]){
+    //         if( Box* box = dynamic_cast<Box*>((*sceneArrayUis)[i].get()) ){
+    //             std::unique_ptr<UI> childBox = createBox(
+    //                 child["name"].as<std::string>(""),
+    //                 child["position"]["x"].as<int>(0),
+    //                 child["position"]["y"].as<int>(0),
+    //                 child["size"]["x"].as<int>(50),
+    //                 child["size"]["y"].as<int>(50),
+    //                 child["color"]["r"].as<uint8_t>(255),
+    //                 child["color"]["g"].as<uint8_t>(255),
+    //                 child["color"]["b"].as<uint8_t>(255),
+    //                 child["color"]["alpha"].as<uint8_t>(255)
+    //             );
+    //             box->addChild(std::move(childBox));
+    //         };
+    //     }
+    // }
 }
+
+
+// void UILayoutSystem::createButton(std::string name, Vector position, Vector size, Color color){
+//     std::cout << "button created" << "\n";
+// }
 
 
 UILayoutSystem uiLayoutSystem;  
