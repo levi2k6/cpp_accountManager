@@ -10,7 +10,7 @@ void InputSystem::checkInput(){
         } 
         if(event.type == (SDL_KEYDOWN)){
             if(event.key.keysym.sym == SDLK_f){
-                auth.initAuth();
+                auth.initScene();
                 std::cout << "You are pressing F." << "\n";
             } 
         }

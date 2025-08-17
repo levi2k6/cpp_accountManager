@@ -20,8 +20,10 @@ src/system/InputSystem.cpp
 src/system/SceneSystem.cpp
 src/system/UISystem.cpp
 src/system/UILayoutSystem.cpp
+src/scenes/Scene.cpp
 src/scenes/Auth.cpp
 src/UI/UI.cpp
+src/UI/components/Container.cpp
 src/UI/components/Box.cpp
 src/UI/components/Button.cpp
 

@@ -4,13 +4,15 @@
 #include <memory>
 #include "Scene.hpp" 
 #include "Box.hpp"
+#include "Container.hpp"
+
 
 class Auth : public Scene{
 
     private:
-        std::unique_ptr<Box> rootUi;
 
     public:
+        Auth(std::unique_ptr<Container> rootUi, std::string layoutLocation) : Scene(std::move(rootUi), layoutLocation){}
         void initAuth();
         Box* getUis();
         

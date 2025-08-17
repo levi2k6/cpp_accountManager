@@ -3,16 +3,18 @@
 #include <vector> 
 #include "UI.hpp"
 
+class Container;
+
 class Scene{
     private:
         std::string layoutLocation = "";
-        std::unique_ptr<Box> rootUi;
+        std::unique_ptr<Container> rootUi;
 
     public:
-        Scene(std::string layoutLocation);
+        Scene(std::unique_ptr<Container> rootUi, std::string layoutLocation);
         void initScene();
-        Box* getRootUi();
-        void setRootUi(std::unique_ptr<Box> ui);
-        virtual void drawScene(){};
+        Container* getRootUi();
+        void setRootUi(std::unique_ptr<Container> ui);
+        virtual void drawScene();
         virtual ~Scene(){}
 };

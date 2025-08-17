@@ -28,6 +28,7 @@ class UI{
         Color &getColor();
         void setColor(const uint8_t &r, const uint8_t &b, const uint8_t &g, const uint8_t &alpha);
 
+        virtual int* getUiType();
         virtual void onStart(){};
         virtual void drawUi(){};   
         virtual ~UI() noexcept = default;

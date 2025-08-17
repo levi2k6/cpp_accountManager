@@ -13,9 +13,7 @@ class UILayoutSystem{
         UILayoutSystem(){};
         void loadUiData(Container *sceneRoot, YAML::Node data);
         void initRootChildren(UI *parent, YAML::Node children);    
-        void UILayoutSystem::createUiChildren();
         std::unique_ptr<UI> createBox(YAML::Node uiData);
-        void initUi(Container container);
 };
 
 extern UILayoutSystem uiLayoutSystem;

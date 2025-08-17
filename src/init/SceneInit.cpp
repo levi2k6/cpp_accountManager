@@ -2,7 +2,7 @@
 #include "../include/Auth.hpp" 
 
 void SceneInit::initScenes(){
-    auth.initAuth();
+    auth.initScene();
 }
 
 SceneInit sceneInit = SceneInit();

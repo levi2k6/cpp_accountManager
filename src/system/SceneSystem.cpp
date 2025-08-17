@@ -10,14 +10,10 @@ void SceneSystem::setCurrentScene(std::string scene){
     currentScene = scene;
 }
 
-Box boxMain("boxMain");
-
 void SceneSystem::sceneChanger(){
-
     // std::cout << "scene checker" << "\n";
     if(currentScene == "main"){
         // std::cout << "you are main" << "\n";
-
         auth.drawScene();
 
     }else if(currentScene == "island"){
