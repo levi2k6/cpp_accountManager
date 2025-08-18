@@ -9,21 +9,34 @@ Container::Container(std::string name) : UI(name){
     onStart();
 }
 
-Container::Container( std::string name, Vector position, Vector size, Color color) : UI(name, position, size, color){
+Container::Container( std::string name, Vector position, Vector size, Color color, int bevel) 
+: UI(name, position, size, color), bevel(bevel)
+{
     onStart();
 }
 
 void Container::onStart(){
 }
 
-int* Container::getUiType(){
-    return &uiType;
+int& Container::getBevel(){
+    return bevel;
 }
+
+Vector& Container::getSquareOrigin(){
+    return squareOrigin;
+}
+// int* Container::getUiType(){
+//     return &uiType;
+// }
 
 void Container::addChild(std::unique_ptr<UI> child){
     child->setParent(this);
     Vector newPosition = Vector( squareOrigin.x + child->getPosition().x, squareOrigin.y + child->getPosition().y );
-    child->setInnerPosition(newPosition.x, newPosition.y);
+    std::cout << "square origin here: " << child->getName() << "\n";
+    child->setInnerPosition(newPosition);
+    std::cout << "new child position: " << "\n";
+    child->getPosition().print();
+    
     uiChildren.push_back(std::move(child));
 }
 

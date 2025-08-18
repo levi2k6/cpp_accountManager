@@ -18,17 +18,16 @@ class UI{
         std::string getName();
         void setName(std::string name);
         Vector &getPosition();
-        void setPosition(const int &x, const int &y);
+        void setPosition(Vector &position);
         UI* getParent();
         void setParent(UI *parent);
         Vector &getInnerPosition();
-        void setInnerPosition(const int &x, const int &y);
+        void setInnerPosition(Vector &position);
         Vector &getSize();
         void setSize(const int &x, const int &y);
         Color &getColor();
         void setColor(const uint8_t &r, const uint8_t &b, const uint8_t &g, const uint8_t &alpha);
 
-        virtual int* getUiType();
         virtual void onStart(){};
         virtual void drawUi(){};   
         virtual ~UI() noexcept = default;

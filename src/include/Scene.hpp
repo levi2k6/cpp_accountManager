@@ -15,6 +15,6 @@ class Scene{
         void initScene();
         Container* getRootUi();
         void setRootUi(std::unique_ptr<Container> ui);
-        virtual void drawScene();
+        void drawScene();
         virtual ~Scene(){}
 };

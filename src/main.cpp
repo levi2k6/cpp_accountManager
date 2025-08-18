@@ -11,7 +11,7 @@
 int main(){
     windowDisplay.initWindow(); 
     renderer.initRenderer();
-    sceneInit.initScenes();
+    sceneInit.initAllScenes();
     mainLoop.startLoop();
 
     SDL_DestroyWindow(windowDisplay.getWindow());

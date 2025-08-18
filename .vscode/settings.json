@@ -55,6 +55,9 @@
         "text_encoding": "cpp",
         "cinttypes": "cpp",
         "typeinfo": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "map": "cpp",
+        "set": "cpp",
+        "valarray": "cpp"
     }
 }

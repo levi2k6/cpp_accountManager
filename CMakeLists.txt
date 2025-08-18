@@ -9,29 +9,32 @@ find_package(fmt CONFIG REQUIRED)
 find_package(SDL2 CONFIG REQUIRED)
 find_package(yaml-cpp CONFIG REQUIRED)
 
-add_executable(${PROJECT_NAME} 
-src/main.cpp 
-src/utils.cpp 
-src/init/WindowDisplay.cpp
-src/init/MainLoop.cpp
-src/init/Renderer.cpp
-src/init/SceneInit.cpp
-src/system/InputSystem.cpp
-src/system/SceneSystem.cpp
-src/system/UISystem.cpp
-src/system/UILayoutSystem.cpp
-src/scenes/Scene.cpp
-src/scenes/Auth.cpp
-src/UI/UI.cpp
-src/UI/components/Container.cpp
-src/UI/components/Box.cpp
-src/UI/components/Button.cpp
+# SDL2_gfx doesn't ship a CMake config, so we find it manually
+find_library(SDL2_GFX_LIBRARY NAMES SDL2_gfx REQUIRED)
 
+add_executable(${PROJECT_NAME} 
+    src/main.cpp 
+    src/utils.cpp 
+    src/init/WindowDisplay.cpp
+    src/init/MainLoop.cpp
+    src/init/Renderer.cpp
+    src/init/SceneInit.cpp
+    src/system/InputSystem.cpp
+    src/system/SceneSystem.cpp
+    src/system/UISystem.cpp
+    src/system/UILayoutSystem.cpp
+    src/scenes/Scene.cpp
+    src/scenes/Auth.cpp
+    src/UI/UI.cpp
+    src/UI/components/Container.cpp
+    src/UI/components/Box.cpp
+    src/UI/components/Button.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE 
     SDL2::SDL2  
     SDL2::SDL2main
+    ${SDL2_GFX_LIBRARY}  # <-- manual link
     fmt::fmt
     yaml-cpp::yaml-cpp
 )

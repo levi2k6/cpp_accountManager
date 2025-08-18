@@ -15,7 +15,11 @@ void UILayoutSystem::loadUiData(Container *parent, YAML::Node children){
 
         if(child["type"].as<std::string>() == "Box"){
             std::unique_ptr<UI> newBox = createBox(child);
-            if(!child["children"].IsNull()){
+            std::cout << "name: " << newBox->getName() << "\n";
+            std::cout << "size: ";
+            newBox->getSize().print();
+
+            if(child["children"]){
                 loadUiData(static_cast<Container*>(newBox.get()), child["children"]);
             }
             parent->addChild(std::move(newBox));
@@ -37,13 +41,15 @@ std::unique_ptr<UI> UILayoutSystem::createBox(YAML::Node uiData){
         uiData["size"]["y"].as<int>(50)
     );
     Color color(
-    uiData["color"]["r"].as<uint8_t>(255),
-    uiData["color"]["g"].as<uint8_t>(255),
-    uiData["color"]["b"].as<uint8_t>(255),
-    uiData["color"]["alpha"].as<uint8_t>(255)
+        uiData["color"]["r"].as<uint8_t>(255),
+        uiData["color"]["g"].as<uint8_t>(255),
+        uiData["color"]["b"].as<uint8_t>(255),
+        uiData["color"]["alpha"].as<uint8_t>(255)
     );
-    
-    std::unique_ptr<UI> box = std::make_unique<Box>(name, position, size, color);
+
+    int bevel = uiData["bevel"].as<int>(0);
+
+    std::unique_ptr<UI> box = std::make_unique<Box>(name, position, size, color, bevel);
     return std::move(box);
 }
 

@@ -14,4 +14,4 @@ void  Auth::initAuth(){
 }
 
 std::unique_ptr<Container> authBox = std::make_unique<Container>("authBox");
-Auth auth(std::move(authBox), "../layouts/AuthLayout.yaml");
+Auth auth(std::move(authBox), "../src/layouts/AuthLayout.yaml");

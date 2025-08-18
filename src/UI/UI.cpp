@@ -35,18 +35,16 @@ Vector& UI::getInnerPosition(){
     return innerPosition;
 }
 
-void UI::setInnerPosition(const int &x, const int &y){
-    innerPosition.x = x;
-    innerPosition.y = y;
+void UI::setInnerPosition(Vector &position){
+    innerPosition = position;
 }
 
 Vector& UI::getPosition(){
     return position;
 }
 
-void UI::setPosition(const int &x, const int &y){
-    position.x = x;
-    position.y = y;
+void UI::setPosition(Vector &position){
+    this->position = position;
 }
 
 

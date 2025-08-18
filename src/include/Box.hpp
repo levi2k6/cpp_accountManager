@@ -13,8 +13,10 @@ class Box : public Container{
 
     public:
         Box(std::string name);
-        Box(std::string name, Vector position, Vector size, Color color);
-        void addChild(std::unique_ptr<UI> child);
+        Box(std::string name, Vector position, Vector size, Color color, int bevel);
         void onStart() override;
         void drawUi() override;
+        void drawBorder();
+        void drawFill(Vector &position, Vector &size, Color &color, int &bevel);
+        void addChild(std::unique_ptr<UI> child);
 };

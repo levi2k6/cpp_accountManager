@@ -17,7 +17,6 @@ class Auth : public Scene{
         Box* getUis();
         
         void setRootUi(std::unique_ptr<UI> ui);
-        void drawScene() override;
 };
 
 extern Auth auth;

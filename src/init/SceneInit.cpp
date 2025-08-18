@@ -1,7 +1,7 @@
 #include "../include/SceneInit.hpp"
 #include "../include/Auth.hpp" 
 
-void SceneInit::initScenes(){
+void SceneInit::initAllScenes(){
     auth.initScene();
 }
 

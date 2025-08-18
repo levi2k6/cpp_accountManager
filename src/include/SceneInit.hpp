@@ -3,7 +3,7 @@
 
 class SceneInit{
     public:
-        void initScenes();
+        void initAllScenes();
 };
 
 extern SceneInit sceneInit;

@@ -9,6 +9,7 @@
 Scene::Scene(std::unique_ptr<Container> rootUi, std::string layoutLocation) : rootUi(std::move(rootUi)), layoutLocation(layoutLocation){}
 
 void Scene::initScene(){
+    rootUi->getContainerChildren()->clear();
 
     YAML::Node yamlData = YAML::LoadFile(layoutLocation);
     auto data = yamlData["data"];
@@ -25,8 +26,8 @@ void Scene::setRootUi(std::unique_ptr<Container> container){
 }
 
 void Scene::drawScene(){
-    std::vector<std::unique_ptr<UI>> *rootContainer = rootUi->getContainerChildren();
-    rootUi->drawChildren(*rootContainer);
+    std::vector<std::unique_ptr<UI>> *rootChildren = rootUi->getContainerChildren();
+    rootUi->drawChildren(*rootChildren);
 }
 
 
