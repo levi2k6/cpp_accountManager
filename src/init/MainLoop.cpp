@@ -1,13 +1,8 @@
-#include <iostream>
 #include <SDL2/SDL.h> 
-#include "../include/WindowDisplay.hpp"
 #include "../include/MainLoop.hpp"
 #include "../include/Renderer.hpp"
 #include "../include/InputSystem.hpp"
-#include "../include/UISystem.hpp"
 #include "../include/SceneSystem.hpp"
-#include "../include/Types.hpp"
-#include "../include/Box.hpp"
 
 void MainLoop::startLoop(){
     while(isRunning){

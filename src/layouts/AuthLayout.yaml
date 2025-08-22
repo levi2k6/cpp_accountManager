@@ -35,3 +35,8 @@ data:
       g: 255
       b: 255
       alpha: 255
+  - type: "VBox"
+    name: "vbox1"
+    size:
+      x: 100
+      y: 100

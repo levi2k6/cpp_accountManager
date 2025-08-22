@@ -9,7 +9,6 @@ find_package(fmt CONFIG REQUIRED)
 find_package(SDL2 CONFIG REQUIRED)
 find_package(yaml-cpp CONFIG REQUIRED)
 
-# SDL2_gfx doesn't ship a CMake config, so we find it manually
 find_library(SDL2_GFX_LIBRARY NAMES SDL2_gfx REQUIRED)
 
 add_executable(${PROJECT_NAME} 
@@ -34,7 +33,7 @@ add_executable(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME} PRIVATE 
     SDL2::SDL2  
     SDL2::SDL2main
-    ${SDL2_GFX_LIBRARY}  # <-- manual link
+    ${SDL2_GFX_LIBRARY}  
     fmt::fmt
     yaml-cpp::yaml-cpp
 )

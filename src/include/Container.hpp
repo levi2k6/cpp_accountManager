@@ -1,11 +1,8 @@
 #pragma once 
-#include <iostream>
 #include <vector>
 #include <memory>
 #include "UI.hpp"
 #include "Types.hpp"
-#include "Enums.hpp"
-
 
 class Container : public UI {
     private:
@@ -19,8 +16,9 @@ class Container : public UI {
         Container(std::string name);
         Container(std::string name, Vector position, Vector size, Color color, int bevel);
         // ~Container() noexcept override = default;
-        void onStart();
-        // void drawUi();
+        void onStart() override;
+        void drawUi() override;
+	void drawFill(Vector &position, Vector &size, Color &color, int &bevel);
         int& getBevel();
         Vector& getSquareOrigin();
         void addChild(std::unique_ptr<UI> child);
