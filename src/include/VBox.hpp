@@ -1,8 +1,10 @@
 
 #include "Container.hpp"
+#include "Enums.hpp"
  
 class VBox : public Container{
     private:
+	int type = uiVbox;
 	Vector leftTop;
 	Vector leftBottom;
 	Vector rightTop;
@@ -12,5 +14,9 @@ class VBox : public Container{
 	VBox(std::string name) : Container(name){}
 	VBox(std::string name, Vector position, Vector size, Color color, int bevel) 
 	    : Container(name, position, size, color, bevel){}
+
+	const int& getType() const override; 
+	void setChildrenPosition() override; 
+
 	void controlChildren();
 };

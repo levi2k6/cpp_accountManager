@@ -15,6 +15,8 @@ Box::Box( std::string name, Vector position, Vector size, Color color, int bevel
 void Box::onStart(){
 };
 
-
+const int& Box::getType() const{
+    return type;
+}
 
 

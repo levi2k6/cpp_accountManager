@@ -67,3 +67,8 @@ void UI::setColor(const uint8_t  &r, const uint8_t  &g, const uint8_t &b, const 
     color.b = b;
     color.alpha = alpha;
 }
+
+const int& UI::getType() const{
+    return type;
+}
+

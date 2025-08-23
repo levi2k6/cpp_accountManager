@@ -1,4 +1,3 @@
-#include <iostream>
 #include <memory>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL2_gfxPrimitives.h>
@@ -17,6 +16,11 @@ Container::Container( std::string name, Vector position, Vector size, Color colo
 }
 
 void Container::onStart(){
+
+}
+
+const int& Container::getType() const{
+    return type;
 }
 
 void Container::drawUi(){
@@ -46,6 +50,7 @@ void Container::drawUi(){
     }
 }
 
+
 void Container::drawFill(Vector &position, Vector &size, Color &color, int &bevel){
      
     int x = position.x - size.x/2;
@@ -56,7 +61,7 @@ void Container::drawFill(Vector &position, Vector &size, Color &color, int &beve
     roundedBoxRGBA(
         renderer.getSdlRenderer(),
         x, y,
-        x + w, y + h,
+	x + w, y + h,
         bevel, 
         color.r, color.g, color.b, color.alpha
     );
@@ -71,12 +76,8 @@ Vector& Container::getSquareOrigin(){
 }
 
 void Container::addChild(std::unique_ptr<UI> child){
-    child->setParent(this);
-    Vector newPosition = Vector( squareOrigin.x + child->getPosition().x, squareOrigin.y + child->getPosition().y );
-    std::cout << "square origin here: " << child->getName() << "\n";
-    child->setInnerPosition(newPosition);
-    std::cout << "new child position: " << "\n";
-    child->getPosition().print();
+    // Vector newPosition = Vector( squareOrigin.x + child->getPosition().x, squareOrigin.y + child->getPosition().y );
+    // child->setInnerPosition(newPosition);
     
     uiChildren.push_back(std::move(child));
 }
@@ -93,3 +94,6 @@ void Container::drawChildren(std::vector<std::unique_ptr<UI>> &children){
         }
     }
 }
+
+
+

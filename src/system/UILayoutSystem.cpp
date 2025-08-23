@@ -16,13 +16,11 @@ void UILayoutSystem::loadUiData(Container *parent, YAML::Node children){
 
         if(child["type"].as<std::string>() == "Box"){
             std::unique_ptr<UI> newBox = createBox(child);
-            std::cout << "name: " << newBox->getName() << "\n";
-            std::cout << "size: ";
-            newBox->getSize().print();
 
             if(child["children"]){
                 loadUiData(static_cast<Container*>(newBox.get()), child["children"]);
             }
+	    newBox->setParent(parent);
             parent->addChild(std::move(newBox));
         }else if(child["type"].as<std::string>() == "VBox"){
 	    std::unique_ptr<UI> newVBox = createVBox(child);
@@ -30,11 +28,19 @@ void UILayoutSystem::loadUiData(Container *parent, YAML::Node children){
 	    if(child["children"]){
 		loadUiData(static_cast<Container*>(newVBox.get()), child["children"]);
 	    }
-
 	    parent->addChild(std::move(newVBox));
 	}
     }
+
 }
+
+
+void UILayoutSystem::initializePositionUis(Container* parent){
+    if(parent->getType() == uiVbox){
+	parent->controlChildren();
+    }
+}
+
 
 std::unordered_map<std::string, std::any> UILayoutSystem::constructSquare(YAML::Node uiData){
     Vector position(
