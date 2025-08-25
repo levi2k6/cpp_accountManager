@@ -1,42 +1,25 @@
-data: 
-  - type: "Box"
-    name: "box1"
-    position:
-      x: 400 
-      y: 400 
-    size:
-      x: 100 
-      y: 100 
-    color:
-      r: 255
-      g: 0 
-      b: 0 
-      alpha: 255
-    bevel: 0 
-    children: 
-      - type: "Box"
-        name: "box1 child1"
-        position:
-        color:
-          r: 255
-          g: 255
-          b: 255
-          alpha: 255 
-  - type: "Box"
-    name: "box2"
-    position:
-      x: 500 
-      y: 500 
-    size:
-      x: 50 
-      y: 100
-    color:
-      r: 255
-      g: 255
-      b: 255
-      alpha: 255
-  - type: "VBox"
-    name: "vbox1"
-    size:
-      x: 100
-      y: 100
+- type: "vbox"
+  name: "box1"
+  position:
+    x: 400 
+    y: 400 
+  size:
+    x: 600 
+    y: 300 
+  color:
+    r: 255
+    g: 0 
+    b: 0 
+  alpha: 255
+  bevel: 10 
+  children:
+    - type: "box"
+      name: "childother"
+    - type: "box"
+      name: "childother"
+    - type: "box"
+      name: "childother"
+    - type: "box"
+      name: "childother"
+
+      

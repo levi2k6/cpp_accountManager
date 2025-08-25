@@ -1,5 +1,5 @@
 #include <iostream>
-#include <any>
+// #include <memory>
 #include <yaml-cpp/yaml.h>
 #include "../include/Box.hpp"
 #include "../include/VBox.hpp"
@@ -14,7 +14,7 @@ void UILayoutSystem::loadUiData(Container *parent, YAML::Node children){
 
     for(const auto& child : children){
 
-        if(child["type"].as<std::string>() == "box"){
+        if(child["type"].as<std::string>() == "Box"){
             std::unique_ptr<UI> newBox = createBox(child);
 
             if(child["children"]){
@@ -22,7 +22,7 @@ void UILayoutSystem::loadUiData(Container *parent, YAML::Node children){
             }
 	    newBox->setParent(parent);
             parent->addChild(std::move(newBox));
-        }else if(child["type"].as<std::string>() == "vbox"){
+        }else if(child["type"].as<std::string>() == "VBox"){
 	    std::unique_ptr<UI> newVBox = createVBox(child);
 
 	    if(child["children"]){
@@ -35,23 +35,23 @@ void UILayoutSystem::loadUiData(Container *parent, YAML::Node children){
 }
 
 
-void UILayoutSystem::initializePositionUis(std::vector<std::unique_ptr<UI>>* uis){
+void UILayoutSystem::initializePositionUis(Container* parent){
 
-    for(auto& ui : *uis){
-	if( auto box = dynamic_cast<Box*>(ui.get()) ) {
-	    box->setChildrenPosition();
-	    if(box->getContainerChildren() != nullptr){
-		initializePositionUis(box->getContainerChildren());
-	    }
-	}else if( auto vbox = dynamic_cast<VBox*>(ui.get()) ){
-	    vbox->setChildrenPosition();
-	    if(vbox->getContainerChildren() != nullptr){
-		initializePositionUis(vbox->getContainerChildren());
-	    }
+    std::vector<std::unique_ptr<UI>>* children = parent->getContainerChildren();
+    
+    if(parent->getContainerChildren() == nullptr){
+	return;
+    }
+
+    for(auto& child : *children){
+	if(auto container = dynamic_cast<Container*>(child.get())){
+
+	    container->setChildrenPosition();
 	} 
     }
 
 }
+
 
 std::unordered_map<std::string, std::any> UILayoutSystem::constructSquare(YAML::Node uiData){
     Vector position(
@@ -109,7 +109,6 @@ std::unique_ptr<UI> UILayoutSystem::createVBox(YAML::Node uiData){
 	std::any_cast<Color>(squareData["color"]),
 	bevel
     );
-
 
     return std::move(box);
 

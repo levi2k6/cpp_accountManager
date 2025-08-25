@@ -31,15 +31,9 @@ void Container::drawUi(){
     int bevel = getBevel();
 
     if(getParent() == nullptr){
-        // std::cout << "No parent" << "\n";
-        // std::cout << "Name: " << getName() << "\n";
         position = getPosition();
-        // position.print();
     }else{
-        // std::cout << "Parent exists" << "\n";
-        // std::cout << "Name: " << getName() << "\n";
         position = getInnerPosition();
-        // position.print();
     }
 
     drawFill(position, size, color, bevel);
@@ -49,7 +43,6 @@ void Container::drawUi(){
         drawChildren(*getContainerChildren());
     }
 }
-
 
 void Container::drawFill(Vector &position, Vector &size, Color &color, int &bevel){
      
@@ -61,7 +54,7 @@ void Container::drawFill(Vector &position, Vector &size, Color &color, int &beve
     roundedBoxRGBA(
         renderer.getSdlRenderer(),
         x, y,
-	x + w, y + h,
+        x + w, y + h,
         bevel, 
         color.r, color.g, color.b, color.alpha
     );

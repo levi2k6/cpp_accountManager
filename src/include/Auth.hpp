@@ -12,7 +12,7 @@ class Auth : public Scene{
     private:
 
     public:
-        Auth(std::unique_ptr<Container> rootUi, std::string layoutLocation) : Scene(std::move(rootUi), layoutLocation){}
+        Auth(std::unique_ptr<Box> rootUi, std::string layoutLocation) : Scene(std::move(rootUi), layoutLocation){}
         void initAuth();
         Box* getUis();
         

@@ -1,25 +1,26 @@
 #include <yaml-cpp/yaml.h>
 #include "../include/Scene.hpp"
 #include "../include/Container.hpp"
+#include "../include/Box.hpp"
 #include "../include/UILayoutSystem.hpp"
 
-Scene::Scene(std::unique_ptr<Container> rootUi, std::string layoutLocation) : rootUi(std::move(rootUi)), layoutLocation(layoutLocation){}
+Scene::Scene(std::unique_ptr<Box> rootUi, std::string layoutLocation) : rootUi(std::move(rootUi)), layoutLocation(layoutLocation){}
 
 void Scene::initScene(){
     rootUi->getContainerChildren()->clear();
 
     YAML::Node yamlData = YAML::LoadFile(layoutLocation);
-    auto data = yamlData["data"];
 
-    uiLayoutSystem.loadUiData(rootUi.get(), data);
-    uiLayoutSystem.initializePositionUis(rootUi.get());
+    uiLayoutSystem.loadUiData(rootUi.get(), yamlData);
+    rootUi->setChildrenPosition();
+    uiLayoutSystem.initializePositionUis(rootUi->getContainerChildren());
 }
 
-Container* Scene::getRootUi(){
+Box* Scene::getRootUi(){
     return rootUi.get(); 
 }
 
-void Scene::setRootUi(std::unique_ptr<Container> container){
+void Scene::setRootUi(std::unique_ptr<Box> container){
     rootUi = std::move(container);
 }
 

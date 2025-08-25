@@ -1,20 +1,19 @@
 #pragma once
 #include <iostream>
-#include <vector> 
-#include "UI.hpp"
+#include <memory>
 
-class Container;
+class Box;
 
 class Scene{
     private:
         std::string layoutLocation = "";
-        std::unique_ptr<Container> rootUi;
+        std::unique_ptr<Box> rootUi;
 
     public:
-        Scene(std::unique_ptr<Container> rootUi, std::string layoutLocation);
+        Scene(std::unique_ptr<Box> rootUi, std::string layoutLocation);
         void initScene();
-        Container* getRootUi();
-        void setRootUi(std::unique_ptr<Container> ui);
+        Box* getRootUi();
+        void setRootUi(std::unique_ptr<Box> ui);
         void drawScene();
         virtual ~Scene(){}
 };

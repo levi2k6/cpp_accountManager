@@ -12,7 +12,7 @@ class UILayoutSystem{
     public:
         UILayoutSystem(){};
         void loadUiData(Container *sceneRoot, YAML::Node data);
-	void initializePositionUis(std::vector<std::unique_ptr<UI>>* rootUi);
+	void initializePositionUis(std::vector<std::unique_ptr<UI>>* parent);
         void initRootChildren(UI *parent, YAML::Node children);    
 	std::unordered_map<std::string, std::any> constructSquare(YAML::Node uiData); 
         std::unique_ptr<UI> createBox(YAML::Node uiData);

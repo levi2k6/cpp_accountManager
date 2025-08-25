@@ -17,6 +17,8 @@ class Box : public Container{
         void onStart() override;
 	const int& getType() const override; 
 
+	void setChildrenPosition() override;
+
         void drawBorder();
         void addChild(std::unique_ptr<UI> child);
 

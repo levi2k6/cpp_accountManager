@@ -19,4 +19,25 @@ const int& Box::getType() const{
     return type;
 }
 
+void Box::setChildrenPosition(){
+
+    std::cout << "parent: " << getName() << "\n";
+    std::cout << "x: " << getPosition().x << "\n";
+    std::cout << "y: " << getPosition().y << "\n";
+
+
+    std::cout << "box setChildrenPosition()" << "\n";
+    std::cout << "updated here bro look at here" << "\n";
+    std::vector<std::unique_ptr<UI>>* children = getContainerChildren(); 
+
+    for(auto& child : *children){
+
+	std::cout << "child: " << child->getName() << "\n";
+	std::cout << "x: " << child->getPosition().x << "\n";
+	std::cout << "y: " << child->getPosition().y << "\n";
+	
+	Vector newPosition = Vector( getSquareOrigin().x + child->getPosition().x, getSquareOrigin().y + child->getPosition().y );
+	child->setInnerPosition(newPosition);
+    }
+}
 
