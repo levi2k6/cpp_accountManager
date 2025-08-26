@@ -17,6 +17,7 @@ class UILayoutSystem{
 	std::unordered_map<std::string, std::any> constructSquare(YAML::Node uiData); 
         std::unique_ptr<UI> createBox(YAML::Node uiData);
 	std::unique_ptr<UI> createVBox(YAML::Node uiData);
+	std::unique_ptr<UI> createHBox(YAML::Node uiData);
 };
 
 extern UILayoutSystem uiLayoutSystem;

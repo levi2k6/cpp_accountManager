@@ -41,6 +41,8 @@ void Container::drawUi(){
 
     if(getContainerChildren()->size() != 0){
         drawChildren(*getContainerChildren());
+    }else{
+	std::cout << getName() << " Has no children." << "\n";
     }
 }
 
@@ -80,9 +82,10 @@ std::vector<std::unique_ptr<UI>>* Container::getContainerChildren(){
 }
 
 void Container::drawChildren(std::vector<std::unique_ptr<UI>> &children){
+
     for(auto &child : children){
         child->drawUi();
-        if( Container* castedChild = dynamic_cast<Container*>(child.get())){
+        if( Container* castedChild = dynamic_cast<Container*>(child.get()) ){
             castedChild->drawChildren(*castedChild->getContainerChildren()); 
         }
     }

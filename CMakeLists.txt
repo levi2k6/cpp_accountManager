@@ -28,6 +28,7 @@ add_executable(${PROJECT_NAME}
     src/UI/components/Container.cpp
     src/UI/components/Box.cpp
     src/UI/components/VBox.cpp
+    src/UI/components/HBox.cpp
     src/UI/components/Button.cpp
 )
 

@@ -1,11 +1,11 @@
-#include "../../include/VBox.hpp"
+#include "../../include/HBox.hpp"
 
-const int& VBox::getType() const{
+const int& HBox::getType() const{
     return type;
 }
 
-void VBox::setChildrenPosition(){
-    std::cout << "vbox setChildrenPosition()" << "\n";
+void HBox::setChildrenPosition(){
+    std::cout << "hbox setChildrenPosition()" << "\n";
     std::vector<std::unique_ptr<UI>>* children = getContainerChildren(); 
 
     Vector size = getSize(); 
@@ -15,13 +15,11 @@ void VBox::setChildrenPosition(){
     for(int i = 0; i < children->size(); i++){
 	Vector squareOrigin = getSquareOrigin();
 	std::cout << "children size: " << children->size() << "\n"; 
-	int x = ((width / (children->size()+1) ) * (i+1) ) + squareOrigin.x; 
-	int y = (height / 2) + squareOrigin.y;
+	int x = (width / 2) + squareOrigin.x; 
+	int y = ((height / (children->size()+1) ) * (i+2) ) + squareOrigin.y;
 	Vector newPosition(x, y);   
 	children->at(i)->setInnerPosition(newPosition);
-	// static_cast<Container*>( children->at(i).get() )->setInnerPosition(childPosition);
     }
-}
-
+}  
 
 

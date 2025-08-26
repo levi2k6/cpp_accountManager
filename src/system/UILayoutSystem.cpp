@@ -3,6 +3,7 @@
 #include <yaml-cpp/yaml.h>
 #include "../include/Box.hpp"
 #include "../include/VBox.hpp"
+#include "../include/HBox.hpp"
 #include "../include/UILayoutSystem.hpp"
 #include "../include/Types.hpp"
 
@@ -29,11 +30,19 @@ void UILayoutSystem::loadUiData(Container *parent, YAML::Node children){
 		loadUiData(static_cast<Container*>(newVBox.get()), child["children"]);
 	    }
 	    parent->addChild(std::move(newVBox));
+	}else if(child["type"].as<std::string>() == "hbox"){
+	    std::cout << child["type"] << " created" << "\n";
+	    std::unique_ptr<UI> newHBox = createHBox(child);
+	    
+	    if(child["children"]){
+		std::cout << "children exists" << "\n";
+		loadUiData(static_cast<Container*>(newHBox.get()), child["children"]);
+	    }
+	    parent->addChild(std::move(newHBox));
 	}
     }
 
 }
-
 
 void UILayoutSystem::initializePositionUis(std::vector<std::unique_ptr<UI>>* uis){
 
@@ -48,7 +57,13 @@ void UILayoutSystem::initializePositionUis(std::vector<std::unique_ptr<UI>>* uis
 	    if(vbox->getContainerChildren() != nullptr){
 		initializePositionUis(vbox->getContainerChildren());
 	    }
-	} 
+	}else if( auto hbox = dynamic_cast<HBox*>(ui.get()) ) {
+	    std::cout << "hbox being positioned" << "\n";
+	    hbox->setChildrenPosition();
+	    if(hbox->getContainerChildren() != nullptr){
+		initializePositionUis(hbox->getContainerChildren());
+	    }
+	}
     }
 
 }
@@ -68,6 +83,11 @@ std::unordered_map<std::string, std::any> UILayoutSystem::constructSquare(YAML::
 	uiData["color"]["b"].as<uint8_t>(255),
 	uiData["color"]["alpha"].as<uint8_t>(255)
     );
+
+    std::cout << "datas are not empty" << "\n";
+    position.print();
+    size.print();
+    color.print();
 
     std::unordered_map<std::string, std::any> data; 
     data["position"] = position;
@@ -102,7 +122,7 @@ std::unique_ptr<UI> UILayoutSystem::createVBox(YAML::Node uiData){
     
     int bevel = uiData["bevel"].as<int>(0);
 
-    std::unique_ptr<UI> box = std::make_unique<VBox>(
+    std::unique_ptr<UI> vbox = std::make_unique<VBox>(
 	name,
         std::any_cast<Vector>(squareData["position"]),
 	std::any_cast<Vector>(squareData["size"]),
@@ -110,9 +130,27 @@ std::unique_ptr<UI> UILayoutSystem::createVBox(YAML::Node uiData){
 	bevel
     );
 
+    return std::move(vbox);
 
-    return std::move(box);
+}
 
+std::unique_ptr<UI> UILayoutSystem::createHBox(YAML::Node uiData){
+    std::cout << "createBox()" << "\n";
+    std::string name = uiData["name"].as<std::string>("");
+
+    std::unordered_map<std::string, std::any> squareData = constructSquare(uiData);
+
+    int bevel = uiData["bevel"].as<int>(0);
+
+    std::unique_ptr<UI> hbox = std::make_unique<HBox>(
+	name,
+        std::any_cast<Vector>(squareData["position"]),
+	std::any_cast<Vector>(squareData["size"]),
+	std::any_cast<Color>(squareData["color"]),
+	bevel
+    );
+
+    return std::move(hbox);
 }
 
 UILayoutSystem uiLayoutSystem;  

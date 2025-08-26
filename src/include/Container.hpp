@@ -31,5 +31,4 @@ class Container : public UI {
 	void setChildrenPosiiton();
         std::vector<std::unique_ptr<UI>>* getContainerChildren();
         void drawChildren(std::vector<std::unique_ptr<UI>> &children);
-
 };

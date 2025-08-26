@@ -21,7 +21,8 @@ const int& Box::getType() const{
 
 void Box::setChildrenPosition(){
 
-    std::cout << "parent: " << getName() << "\n";
+    std::cout << "parent: " << getParent() << "\n";
+    std::cout << "this: " << getName() << "\n";
     std::cout << "x: " << getPosition().x << "\n";
     std::cout << "y: " << getPosition().y << "\n";
 
